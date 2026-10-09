@@ -2,7 +2,7 @@
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
 
-window.addEventListener("scroll", () => {
+function updateActiveNav() {
     let current = "";
 
     sections.forEach(sec => {
@@ -10,13 +10,75 @@ window.addEventListener("scroll", () => {
         if (window.scrollY >= sectionTop) current = sec.getAttribute("id");
     });
 
+    // The last section is too short to scroll its top near the nav,
+    // so treat reaching the bottom of the page as being in it
+    const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
+    if (atBottom) current = sections[sections.length - 1].getAttribute("id");
+
     navLinks.forEach(a => {
-        a.classList.remove("active");
-        if (a.getAttribute("href") === `#${current}`) {
-            a.classList.add("active");
-        }
+        a.classList.toggle("active", a.getAttribute("href") === `#${current}`);
     });
-});
+}
+
+window.addEventListener("scroll", updateActiveNav);
+window.addEventListener("resize", updateActiveNav);
+updateActiveNav();
+
+/* ----------- FADE-IN ON SCROLL ----------- */
+const revealEls = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target); // fade in once, then leave it be
+            }
+        });
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+} else {
+    revealEls.forEach(el => el.classList.add("visible"));
+}
+
+/* ----------- TIMELINE DRAWS ITSELF ON SCROLL ----------- */
+const timeline = document.querySelector(".timeline");
+const timelineLine = document.querySelector(".timeline-line");
+const timelineItems = document.querySelectorAll(".timeline-item");
+let timelineTicking = false;
+
+function updateTimeline() {
+    timelineTicking = false;
+
+    // the line fills down to a point 60% of the way down the screen
+    const drawTo = window.innerHeight * 0.6;
+    const lineRect = timelineLine.getBoundingClientRect();
+    const progress = Math.min(1, Math.max(0, (drawTo - lineRect.top) / lineRect.height));
+    timeline.style.setProperty("--progress", progress);
+    timeline.classList.toggle("complete", progress >= 1);
+
+    // light up each year's dot once the line reaches it
+    const filledTo = lineRect.top + progress * lineRect.height;
+    timelineItems.forEach(item => {
+        const dot = item.querySelector(".timeline-circle").getBoundingClientRect();
+        item.classList.toggle("reached", dot.top + dot.height / 2 <= filledTo + 1);
+    });
+}
+
+function requestTimelineUpdate() {
+    if (!timelineTicking) {
+        timelineTicking = true;
+        requestAnimationFrame(updateTimeline);
+    }
+}
+
+window.addEventListener("scroll", requestTimelineUpdate, { passive: true });
+window.addEventListener("resize", requestTimelineUpdate);
+updateTimeline();
+
+/* ----------- FOOTER YEAR ----------- */
+document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ----------- TYPING ANIMATION ----------- */
 const skillElement = document.getElementById("typed-skill");
@@ -74,12 +136,6 @@ function typeEffect() {
 }
 
 typeEffect();
-
-/* ----------- CONTACT FORM (Simple Handler) ----------- */
-document.getElementById("contact-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Thank you! Your message has been sent.");
-});
 
 /* ----------- EXPERIENCE TIMELINE POPOUTS ----------- */
 document.querySelectorAll('.ticker').forEach(ticker => {

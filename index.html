@@ -4,8 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hi, I'm Dolan!</title>
+    <meta name="description" content="Dolan Ma, Financial Analyst at Bridge Green Upcycle. Commercial strategy, market research and data analytics." />
+    <link rel="canonical" href="https://dolan-ma.com/" />
+
+    <!-- Link previews (LinkedIn, iMessage, Slack, X, etc.) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dolan-ma.com/" />
+    <meta property="og:title" content="Dolan Ma | Commercial Strategy & Data Analytics" />
+    <meta property="og:description" content="Financial Analyst at Bridge Green Upcycle. Commercial strategy, market research and data analytics." />
+    <meta property="og:image" content="https://dolan-ma.com/Images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Portrait of Dolan Ma" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
     <link rel="stylesheet" href="style.css" />
+    <!-- lets the CSS hide fade-in content only when JavaScript is available to reveal it -->
+    <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
@@ -21,51 +40,53 @@
 
     <!-- ABOUT ME SECTION -->
     <section id="about" class="about-section">
-        <h2 class="section-title">About Me</h2>
+        <div class="reveal">
+            <h2 class="section-title">About Me</h2>
 
-        <h2 class="hero-subtitle">Commercial Strategy | Market Research | Data Analytics </h2>
+            <p class="hero-subtitle">Commercial Strategy | Market Research | Data Analytics</p>
 
-        <h3 class="hero-skill-line">
-            Hi, I'm Dolan and I'm skilled in
-            <span id="typed-skill"></span>
-        </h3>
+            <h3 class="hero-skill-line">
+                Hi, I'm Dolan and I'm skilled in
+                <span id="typed-skill"></span>
+            </h3>
+        </div>
 
         <div class="about-content">
             <div class="about-left">
-                <div class="hex-grid">
+                <div class="hex-grid reveal">
                     <div class="hex-row">
                         <!-- Canva -->
                         <div class="hex" aria-label="Canva">
                             <div class="hex-inner canva-color">
-                                <img class="hex-logo" src="Images/canva.png" alt="Canva logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/canva.png" alt="Canva logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- CSS -->
                         <div class="hex" aria-label="CSS">
                             <div class="hex-inner css-color">
-                                <img class="hex-logo" src="Images/css.png" alt="CSS logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/css.png" alt="CSS logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- Excel -->
                         <div class="hex" aria-label="Excel">
                             <div class="hex-inner excel-color">
-                                <img class="hex-logo" src="Images/excel.png" alt="Excel logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/excel.png" alt="Excel logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- Figma -->
                         <div class="hex" aria-label="Figma">
                             <div class="hex-inner figma-color">
-                                <img class="hex-logo" src="Images/figma.png" alt="Figma logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/figma.png" alt="Figma logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- HTML -->
                         <div class="hex" aria-label="HTML">
                             <div class="hex-inner html-color">
-                                <img class="hex-logo" src="Images/html.png" alt="HTML logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/html.png" alt="HTML logo" loading="lazy" />
                             </div>
                         </div>
                     </div>
@@ -74,50 +95,66 @@
                         <!-- JavaScript -->
                         <div class="hex" aria-label="JavaScript">
                             <div class="hex-inner js-color">
-                                <img class="hex-logo" src="Images/javascript.png" alt="JavaScript logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/javascript.png" alt="JavaScript logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- PowerPoint -->
                         <div class="hex" aria-label="PowerPoint">
                             <div class="hex-inner ppt-color">
-                                <img class="hex-logo" src="Images/powerpoint.png" alt="PowerPoint logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/powerpoint.png" alt="PowerPoint logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- Python -->
                         <div class="hex" aria-label="Python">
                             <div class="hex-inner python-color">
-                                <img class="hex-logo" src="Images/python.png" alt="Python logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/python.png" alt="Python logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- SQL -->
                         <div class="hex" aria-label="SQL">
                             <div class="hex-inner sql-color">
-                                <img class="hex-logo" src="Images/sql.png" alt="SQL logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/sql.png" alt="SQL logo" loading="lazy" />
                             </div>
                         </div>
 
                         <!-- Tableau -->
                         <div class="hex" aria-label="Tableau">
                             <div class="hex-inner tableau-color">
-                                <img class="hex-logo" src="Images/tableau.png" alt="Tableau logo" loading="lazy" />
+                                <img class="hex-logo" src="Images/icons/tableau.png" alt="Tableau logo" loading="lazy" />
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <p class="about-text">
-                    Bachelors of Science in Business Administration, Concentrations in Finance & MIS  
-                    (August 2022 – May 2026) @ SUNY Binghamton University
-                </p>
-
+                <div class="education-card reveal">
+                    <h3 class="card-label">Education</h3>
+                    <ul class="edu-list">
+                        <li class="edu-item">
+                            <img class="edu-logo" src="Images/icons/binghamton.png" alt="" loading="lazy" />
+                            <div>
+                                <span class="edu-school">SUNY Binghamton University</span>
+                                <span class="edu-detail">B.S. Business Administration · Concentrations in Finance & MIS</span>
+                                <span class="edu-dates">Aug 2022 – May 2026</span>
+                            </div>
+                        </li>
+                        <li class="edu-item">
+                            <img class="edu-logo" src="Images/icons/waseda.png" alt="" loading="lazy" />
+                            <div>
+                                <span class="edu-school">Waseda University</span>
+                                <span class="edu-detail">Study Abroad · Tokyo, Japan</span>
+                                <span class="edu-dates">Mar 2024 – Aug 2024</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="about-right">
+            <div class="about-right reveal">
                 <div class="profile-container">
-                    <img src="Images/Dolan_Koffman Stairs.jpg" alt="Dolan Ma" class="profile-img" />
+                    <img src="Images/dolan-profile.jpg" alt="Dolan Ma" class="profile-img" />
                     <a class="linkedin-button" href="https://www.linkedin.com/in/dolan-ma/" target="_blank" rel="noopener noreferrer" aria-label="Visit my LinkedIn profile" title="Visit my LinkedIn profile">
                         <img src="Images/LinkedIn Icon.png" alt="" loading="lazy" />
                     </a>
@@ -128,52 +165,55 @@
 
     <!-- EXPERIENCE SECTION -->
     <section id="experience" class="experience-section">
-        <h2 class="section-title">Experience</h2>
+        <h2 class="section-title reveal">Experience</h2>
 
         <div class="timeline vertical">
-            <div class="timeline-line"></div>
-            <div class="timeline-item">
+            <div class="timeline-line">
+                <!-- fills from top to bottom as you scroll (see script.js) -->
+                <div class="timeline-progress"></div>
+            </div>
+            <div class="timeline-item reveal">
                 <div class="timeline-circle"></div>
                 <div class="year">2026</div>
                 <div class="experiences">
                     <div class="ticker" data-experience="bgu">
-                        <img class="large-logo" src="Images/BGU Logo.png" alt="Bridge Green Upcycle" />
+                        <img src="Images/icons/bgu.png" alt="Bridge Green Upcycle" />
                     </div>
                     <div class="ticker" data-experience="bu">
-                        <img src="Images/Binghamton University Logo.png" alt="Binghamton University" />
+                        <img src="Images/icons/binghamton.png" alt="Binghamton University" />
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-circle"></div>
                 <div class="year">2025</div>
                 <div class="experiences">
                     <div class="ticker" data-experience="ezinc">
-                        <img src="Images/e-Zinc Logo.jpg" alt="e-Zinc" />
+                        <img src="Images/icons/ezinc.png" alt="e-Zinc" />
                     </div>
                     <div class="ticker" data-experience="bujapanese">
-                        <img src="Images/binghamton_japanese.png" alt="Binghamton University Japanese TA" />
+                        <img src="Images/icons/binghamton.png" alt="Binghamton University Japanese TA" />
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-circle"></div>
                 <div class="year">2024</div>
                 <div class="experiences">
                     <div class="ticker" data-experience="waseda">
-                        <img src="Images/Waseda University Logo.png" alt="Waseda University" />
+                        <img src="Images/icons/waseda.png" alt="Waseda University" />
                     </div>
                 </div>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-circle"></div>
                 <div class="year">2023</div>
                 <div class="experiences">
                     <div class="ticker" data-experience="morganstanley">
-                        <img class="large-logo" src="Images/morgan_stanley.png" alt="Morgan Stanley" />
+                        <img src="Images/icons/morgan-stanley.png" alt="Morgan Stanley" />
                     </div>
                     <div class="ticker" data-experience="burlington">
-                        <img class="large-logo" src="Images/burlington_coat_factory.png" alt="Burlington Coat Factory" />
+                        <img src="Images/icons/burlington.png" alt="Burlington Coat Factory" />
                     </div>
                 </div>
             </div>
@@ -183,85 +223,117 @@
         <div id="popout-bgu" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="bgu">&times;</span>
-                <h3>Bridge Green Upcycle · Commercial Strategy Intern</h3>
-                <p>Binghamton, NY · Jan 2026 – Present</p>
-                <p>Commercial strategy development, battery & critical mineral market analysis, and non-dilutive funding strategies</p>
+                <h3>Bridge Green Upcycle</h3>
+                <ol class="role-progression">
+                    <li class="role current">
+                        <span class="role-title">Financial Analyst</span>
+                        <span class="role-dates">Sep 2026 – Present</span>
+                        <span class="role-desc">Financial modeling & forecasting, budgeting & variance analysis, and financial reporting to support funding and growth decisions</span>
+                    </li>
+                    <li class="role">
+                        <span class="role-title">Commercial Strategy Intern</span>
+                        <span class="role-dates">Binghamton, NY · Jan 2026 – Aug 2026</span>
+                        <span class="role-desc">Commercial strategy development, battery & critical mineral market analysis, and non-dilutive funding strategies</span>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="popout-bu" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="bu">&times;</span>
-                <h3>Binghamton University · Resident Assistant</h3>
-                <p>Binghamton, NY · Aug 2025 – Present</p>
-                <p>Residential community leadership, resident engagement & relationship building, and operational management of campus housing</p>
+                <h3>Binghamton University</h3>
+                <ol class="role-progression">
+                    <li class="role">
+                        <span class="role-title">Resident Assistant</span>
+                        <span class="role-dates">Binghamton, NY · Aug 2025 – May 2026</span>
+                        <span class="role-desc">Residential community leadership, resident engagement & relationship building, and operational management of campus housing</span>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="popout-ezinc" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="ezinc">&times;</span>
-                <h3>e-Zinc · Commercial Strategy Intern</h3>
-                <p>Parsippany, NJ · Jun 2025 – Aug 2025</p>
-                <p>Energy storage market analysis, critical minerals pricing & supply chain modeling, and executive research synthesis & benchmarking</p>
+                <h3>e-Zinc</h3>
+                <ol class="role-progression">
+                    <li class="role">
+                        <span class="role-title">Commercial Strategy Intern</span>
+                        <span class="role-dates">Parsippany, NJ · Jun 2025 – Aug 2025</span>
+                        <span class="role-desc">Energy storage market analysis, critical minerals pricing & supply chain modeling, and executive research synthesis & benchmarking</span>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="popout-waseda" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="waseda">&times;</span>
-                <h3>Waseda University · Study Abroad</h3>
-                <p>Tokyo, Japan · Mar 2024 – Aug 2024</p>
-                <p>Immersive study abroad program at Japan's #1 Liberal Arts University, focused on cultural exchange and language learning</p>
+                <h3>Waseda University</h3>
+                <ol class="role-progression">
+                    <li class="role">
+                        <span class="role-title">Study Abroad</span>
+                        <span class="role-dates">Tokyo, Japan · Mar 2024 – Aug 2024</span>
+                        <span class="role-desc">Immersive study abroad program at Japan's #1 Liberal Arts University, focused on cultural exchange and language learning</span>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="popout-morganstanley" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="morganstanley">&times;</span>
-                <h3>Morgan Stanley · Equity Research Competition</h3>
-                <p>Binghamton, NY · Sep 2023 – Dec 2023</p>
-                <p>Equity research & financial modeling, valuation analysis & investment recommendation, and presentation of analytical insights for competitive stock pitch</p>
+                <h3>Morgan Stanley</h3>
+                <ol class="role-progression">
+                    <li class="role">
+                        <span class="role-title">Equity Research Competition · Winner 🏆</span>
+                        <span class="role-dates">Binghamton, NY · Sep 2023 – Dec 2023</span>
+                        <span class="role-desc">Equity research & financial modeling, valuation analysis & investment recommendation, and presentation of analytical insights for competitive stock pitch</span>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="popout-burlington" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="burlington">&times;</span>
-                <h3>Burlington Coat Factory · Sales Associate</h3>
-                <p>Brooklyn, NY · Jul 2023 – Aug 2023</p>
-                <p>Team leadership & staff coordination, workplace culture enhancement, and customer service excellence</p>
+                <h3>Burlington Coat Factory</h3>
+                <ol class="role-progression">
+                    <li class="role">
+                        <span class="role-title">Sales Associate</span>
+                        <span class="role-dates">Brooklyn, NY · Jul 2023 – Aug 2023</span>
+                        <span class="role-desc">Team leadership & staff coordination, workplace culture enhancement, and customer service excellence</span>
+                    </li>
+                </ol>
             </div>
         </div>
         <div id="popout-bujapanese" class="popout-modal">
             <div class="popout-content">
                 <span class="close-btn" data-close="bujapanese">&times;</span>
-                <h3>Binghamton University · Japanese Language Teaching Assistant</h3>
-                <p>Binghamton, NY · Jan 2025 – May 2025</p>
-                <p>Japanese language instruction, student mentorship, and curriculum design & classroom facilitation</p>
+                <h3>Binghamton University</h3>
+                <ol class="role-progression">
+                    <li class="role">
+                        <span class="role-title">Japanese Language Teaching Assistant</span>
+                        <span class="role-dates">Binghamton, NY · Jan 2025 – May 2025</span>
+                        <span class="role-desc">Japanese language instruction, student mentorship, and curriculum design & classroom facilitation</span>
+                    </li>
+                </ol>
             </div>
         </div>
     </section>
 
     <!-- CONTACT SECTION -->
     <section id="contact" class="contact-section">
-        <div class="contact-header">
-            <h2 class="section-title">Contact Me</h2>
-            <h2 class="section-title">What am I listening to?</h2>
-        </div>
-
         <div class="contact-container">
-            <div class="contact-left">
-                <div class="caution-tape">
-                    <div class="tape-text">Under Construction Under Construction Under Construction Under Construction</div>
-                    <form id="contact-form" class="contact-form">
-                        <input type="text" placeholder="Your Name" required />
-                        <input type="email" placeholder="Your Email" required />
-                        <textarea placeholder="Please write your message here." required></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
+            <div class="contact-left reveal">
+                <h2 class="section-title">Contact Me</h2>
+                <div class="contact-card">
+                    <p class="contact-name">Dolan Ma</p>
+                    <a class="contact-email" href="mailto:dolanma.nyc@gmail.com">dolanma.nyc@gmail.com</a>
                 </div>
             </div>
 
-            <div class="contact-right">
+            <div class="contact-right reveal">
+                <h2 class="section-title">What am I listening to?</h2>
                 <div class="spotify-section">
-                    <iframe style="border-radius:12px"
-                        src="https://open.spotify.com/embed/track/0KKkJNfGyhkQ5aFogxQAPU?utm_source=generator"
+                    <iframe title="Spotify player"
+                        src="https://open.spotify.com/embed/track/60nZcImufyMA1MKQY3dcCH?utm_source=generator"
                         width="100%" frameborder="0" allowfullscreen=""
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                         loading="lazy"></iframe>
@@ -269,6 +341,11 @@
             </div>
         </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <p>© <span id="year">2026</span> Dolan Ma</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
