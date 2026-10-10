@@ -106,6 +106,7 @@ nav {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--text);
+    text-decoration: none;
 }
 
 .nav-right {
@@ -148,8 +149,18 @@ nav {
 }
 
 .hero-skill-line {
-    margin: 0 0 32px;
+    margin: 0 0 16px;
     font-size: 1.5rem;
+}
+
+/* BIO */
+
+.bio {
+    max-width: 72ch;
+    margin: 0 0 32px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-muted);
 }
 
 #typed-skill {
@@ -180,7 +191,14 @@ nav {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 340px;
     gap: 40px;
-    align-items: start;
+    align-items: stretch; /* right column matches the left column's height */
+}
+
+/* photo on top, Featured card below; the photo flexes so both columns end level */
+.about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 28px; /* same gap as between the hexagons and the Education card */
 }
 
 /* EDUCATION */
@@ -301,36 +319,82 @@ nav {
 
 .profile-container {
     position: relative;
+    flex: 1 1 auto;
     width: 100%;
-    height: 300px;
+    min-height: 220px;
     border-radius: 12px;
     overflow: hidden;
     background: var(--surface);
 }
 
 .profile-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.linkedin-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 44px;
-    height: 44px;
-    background: #0e76a8; /* LinkedIn blue */
-    border-radius: 8px;
-    transition: background 160ms ease, transform 120ms ease;
+/* FEATURED (under the photo) */
+
+.featured-card {
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
 }
 
-.linkedin-button:hover { background: #0b5f8a; transform: translateY(-2px); }
-.linkedin-button:focus-visible { outline: 2px solid #cde6ff; outline-offset: 3px; }
-.linkedin-button img { width: 20px; height: 20px; }
+.featured-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.featured-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 -10px;
+    padding: 7px 10px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 160ms ease;
+}
+
+.featured-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.featured-emoji {
+    flex: 0 0 auto;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.featured-title {
+    flex: 1;
+    font-weight: 600;
+    transition: color 160ms ease;
+}
+
+.featured-arrow {
+    color: var(--text-muted);
+    transition: color 160ms ease, transform 160ms ease;
+}
+
+.featured-item:hover .featured-title,
+.featured-item:hover .featured-arrow {
+    color: var(--accent);
+}
+
+.featured-item:hover .featured-arrow {
+    transform: translate(2px, -2px);
+}
+
 
 /* EXPERIENCE */
 
@@ -438,10 +502,54 @@ nav {
 .experiences {
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 16px 32px;
+}
+
+/* each entry: logo tile + company/role label, the whole thing opens the popout */
+.exp-entry {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 350px;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.exp-entry:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 12px;
+}
+
+.exp-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.exp-org {
+    font-weight: 700;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+.exp-role {
+    font-size: 0.92rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+}
+
+.exp-entry:hover .exp-org {
+    color: var(--accent);
 }
 
 .ticker {
+    flex: 0 0 var(--ticker);
     width: var(--ticker);
     height: var(--ticker);
     display: flex;
@@ -450,11 +558,10 @@ nav {
     background: var(--surface);
     border: 2px solid var(--accent-strong);
     border-radius: 12px;
-    cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.ticker:hover {
+.exp-entry:hover .ticker {
     transform: scale(1.08);
     box-shadow: 0 6px 16px rgba(59, 116, 255, 0.35);
 }
@@ -583,16 +690,27 @@ nav {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
-    align-items: start;
+    align-items: stretch;
+}
+
+/* each column: heading, then a card that stretches so both cards end level */
+.contact-left,
+.contact-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-card,
+.spotify-card {
+    flex: 1;
 }
 
 .contact-card {
-    min-height: 352px; /* matches the Spotify player beside it */
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 12px;
-    padding: 32px;
+    padding: 28px 32px;
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
@@ -605,24 +723,100 @@ nav {
     line-height: 1.2;
 }
 
-.contact-email {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--accent);
-    text-decoration: none;
-    overflow-wrap: anywhere;
+/* matching rows: icon tile + small label + value */
+.contact-links {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
-.contact-email:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0;
+    font: inherit;
+    text-align: left;
+    color: var(--text);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.contact-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 10px;
+}
+
+.contact-icon {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: #ffffff;
+    transition: transform 160ms ease;
+}
+
+.email-icon { background: var(--accent-strong); }
+.linkedin-icon { background: #0a66c2; } /* LinkedIn blue */
+.linkedin-icon img { width: 18px; height: 18px; }
+.share-icon { background: #14b8a6; } /* teal, to set it apart from the two blue tiles */
+
+/* brief confirmation after the link is copied */
+.contact-link.copied .contact-value { color: #5eead4; }
+
+.contact-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.contact-value {
+    font-weight: 600;
+    overflow-wrap: anywhere;
+    transition: color 160ms ease;
+}
+
+.contact-link:hover .contact-value {
+    color: var(--accent);
+}
+
+.contact-link:hover .contact-icon {
+    transform: translateY(-2px);
 }
 
 /* SPOTIFY */
 
-.spotify-section iframe {
+/* same card styling as .contact-card so the two columns read as a pair */
+.spotify-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 28px 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.spotify-card iframe {
     width: 100%;
-    height: 352px;
+    height: 152px;
     border: 0;
     border-radius: 12px;
 }
@@ -684,7 +878,7 @@ nav {
     }
 
     .profile-container {
-        height: auto;
+        flex: none;
         aspect-ratio: 4 / 3;
     }
 
@@ -705,8 +899,8 @@ nav {
         gap: 32px;
     }
 
-    .contact-card {
-        min-height: 0;
+    .contact-card,
+    .spotify-card {
         padding: 24px;
     }
 }
@@ -747,7 +941,19 @@ nav {
         font-size: 1.05rem;
     }
 
+    /* entries stack one per line on phones */
     .experiences {
+        flex-direction: column;
         gap: 14px;
     }
+
+    .exp-entry {
+        width: 100%;
+        gap: 12px;
+    }
+
+    .exp-org { font-size: 0.95rem; }
+    .exp-role { font-size: 0.85rem; }
+
+    .bio { font-size: 1rem; }
 }
