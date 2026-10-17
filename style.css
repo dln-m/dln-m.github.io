@@ -135,23 +135,147 @@ nav {
     text-underline-offset: 6px;
 }
 
-/* ABOUT */
+/* HERO */
 
-.about-section {
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+    align-items: center;
+    gap: 56px;
     padding-top: calc(var(--nav-h) + 40px);
+    padding-bottom: 88px; /* room for the scroll cue */
 }
 
-.hero-subtitle {
-    margin: 0 0 8px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-muted);
+.hero-eyebrow {
+    margin: 0 0 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.hero-name {
+    margin: 0 0 20px;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    /* white fading into the accent blue */
+    background: linear-gradient(100deg, var(--text) 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .hero-skill-line {
     margin: 0 0 16px;
     font-size: 1.5rem;
+    font-weight: 600;
 }
+
+.hero-pitch {
+    max-width: 44ch;
+    margin: 0 0 32px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    color: #fff;
+    background: var(--accent-strong);
+    box-shadow: 0 8px 24px rgba(59, 116, 255, 0.35);
+}
+
+.btn-primary:hover {
+    background: #4f84ff;
+    box-shadow: 0 10px 28px rgba(59, 116, 255, 0.5);
+}
+
+.btn-ghost {
+    color: var(--text);
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.btn-ghost:hover {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* portrait crop of the landscape photo, with a gradient border and soft glow behind */
+.hero-photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    padding: 3px; /* border thickness */
+    border-radius: 28px;
+    background: linear-gradient(160deg, var(--accent), var(--accent-strong) 45%, rgba(45, 212, 191, 0.8));
+    box-shadow: 0 24px 80px rgba(59, 116, 255, 0.4);
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 47% 30%;
+    border-radius: 25px;
+}
+
+.scroll-cue {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    animation: bob 2.4s ease-in-out infinite;
+    transition: color 160ms ease, border-color 160ms ease;
+}
+
+.scroll-cue:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-cue { animation: none; }
+}
+
+/* ABOUT */
 
 /* BIO */
 
@@ -161,6 +285,14 @@ nav {
     font-size: 1.05rem;
     line-height: 1.7;
     color: var(--text-muted);
+}
+
+.bio p {
+    margin: 0 0 16px;
+}
+
+.bio p:last-child {
+    margin-bottom: 0;
 }
 
 #typed-skill {
@@ -187,24 +319,17 @@ nav {
     45%, 55% { opacity: 0; }
 }
 
-.about-content {
+/* Education and Featured side by side under the hexagons */
+.about-cards {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 40px;
-    align-items: stretch; /* right column matches the left column's height */
-}
-
-/* photo on top, Featured card below; the photo flexes so both columns end level */
-.about-right {
-    display: flex;
-    flex-direction: column;
-    gap: 28px; /* same gap as between the hexagons and the Education card */
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 28px;
+    margin-top: 40px;
 }
 
 /* EDUCATION */
 
 .education-card {
-    margin-top: 28px;
     padding: 20px 24px;
     background: var(--surface);
     border: 1px solid var(--border);
@@ -260,28 +385,105 @@ nav {
 /* SKILL HEXAGONS */
 
 .hex-grid {
-    --hex-w: clamp(56px, 10vw, 120px);
-    --hex-gap: clamp(8px, 1.4vw, 15px);
+    --hex-w: clamp(56px, 11vw, 110px);
+    --hex-gap: 4px; /* thin seam between neighboring cells */
+    --hex-step: calc(var(--hex-w) + var(--hex-gap)); /* center-to-center distance */
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--hex-gap);
 }
 
+/* Honeycomb: rows are offset by half a cell in opposite directions so the second row
+   nests into the first, and pulled up so the pointed tips interlock.
+   Row spacing for an even seam is step × √3/2; the cell height is width × 2/√3. */
 .hex-row {
     display: flex;
     gap: var(--hex-gap);
+    transform: translateX(calc(var(--hex-step) / -4));
 }
 
-.hex:hover {
+.hex-row + .hex-row {
+    margin-top: calc(var(--hex-step) * 0.866 - var(--hex-w) * 1.1547);
+    transform: translateX(calc(var(--hex-step) / 4));
+}
+
+/* NAME LABEL
+   Small pill above the hexagon on hover, keyboard focus, or tap (tabindex makes
+   the hexagon focusable, and tapping focuses it on phones). Text comes from data-label. */
+.hex {
+    position: relative;
+    outline: none;
+}
+
+.hex::before,
+.hex::after {
+    position: absolute;
+    left: 50%;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease;
+}
+
+/* the pill */
+.hex::after {
+    content: attr(data-label);
+    bottom: calc(100% + 6px);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--text);
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    transform: translate(-50%, 4px);
+}
+
+/* the little arrow under the pill */
+.hex::before {
+    content: "";
+    bottom: calc(100% + 1px);
+    border: 5px solid transparent;
+    border-top-color: var(--surface-raised);
+    border-bottom: 0;
+    transform: translate(-50%, 4px);
+}
+
+/* bottom-row labels sit underneath, so they don't cover the interlocking row above */
+.hex-row + .hex-row .hex::after {
+    bottom: auto;
+    top: calc(100% + 6px);
+    transform: translate(-50%, -4px);
+}
+
+.hex-row + .hex-row .hex::before {
+    bottom: auto;
+    top: calc(100% + 1px);
+    border: 5px solid transparent;
+    border-bottom-color: var(--surface-raised);
+    border-top: 0;
+    transform: translate(-50%, -4px);
+}
+
+.hex:hover::before,
+.hex:hover::after,
+.hex:focus::before,
+.hex:focus::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.hex:hover,
+.hex:focus {
     /* drop-shadow on the wrapper, since clip-path on .hex-inner would clip a box-shadow */
     filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.35));
 }
 
 .hex-inner {
     width: var(--hex-w);
-    aspect-ratio: 120 / 104;
-    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    aspect-ratio: 104 / 120; /* pointy-top regular hexagon */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -315,27 +517,7 @@ nav {
 .sql-color { --brand: #8f9dff; }
 .tableau-color { --brand: #4aa3ff; }
 
-/* PROFILE */
-
-.profile-container {
-    position: relative;
-    flex: 1 1 auto;
-    width: 100%;
-    min-height: 220px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--surface);
-}
-
-.profile-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* FEATURED (under the photo) */
+/* FEATURED */
 
 .featured-card {
     padding: 20px 24px;
@@ -668,16 +850,26 @@ nav {
 
 .close-btn {
     position: absolute;
-    top: 10px;
-    right: 16px;
+    top: 6px;
+    right: 10px;
+    padding: 4px 8px;
+    font: inherit;
     font-size: 24px;
     line-height: 1;
     cursor: pointer;
     color: var(--text-muted);
+    background: none;
+    border: 0;
+    border-radius: 8px;
 }
 
 .close-btn:hover {
     color: var(--text);
+}
+
+.close-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 /* CONTACT */
@@ -868,18 +1060,8 @@ nav {
 /* RESPONSIVE */
 
 @media (max-width: 1000px) {
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .about-right {
-        max-width: 520px;
-    }
-
-    .profile-container {
-        flex: none;
-        aspect-ratio: 4 / 3;
+    .hero {
+        gap: 40px;
     }
 
     .timeline {
@@ -894,6 +1076,25 @@ nav {
 }
 
 @media (max-width: 768px) {
+    /* photo stacks above the text */
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        min-height: 0;
+        padding-bottom: 48px;
+    }
+
+    .hero-photo {
+        order: -1;
+        width: min(240px, 70%);
+    }
+
+    .scroll-cue { display: none; }
+
+    .about-cards {
+        grid-template-columns: 1fr;
+    }
+
     .contact-container {
         grid-template-columns: 1fr;
         gap: 32px;
@@ -915,9 +1116,11 @@ nav {
         padding-bottom: 36px;
     }
 
-    .about-section {
+    .hero {
         padding-top: calc(var(--nav-h) + 28px);
     }
+
+    .hero-pitch { font-size: 1.05rem; }
 
     .section-title {
         font-size: 1.5rem;
@@ -927,8 +1130,7 @@ nav {
     .nav-right { gap: 14px; }
     .nav-right a { font-size: 0.9rem; }
 
-    .hero-subtitle { font-size: 1rem; }
-    .hero-skill-line { font-size: 1.1rem; }
+    .hero-skill-line { font-size: 1.2rem; }
 
     .timeline {
         --year-w: 46px;

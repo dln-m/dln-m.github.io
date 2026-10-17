@@ -200,34 +200,43 @@ function typeEffect() {
 typeEffect();
 
 /* ----------- EXPERIENCE TIMELINE POPOUTS ----------- */
+// the timeline entry that opened the current modal, so focus can return to it on close
+let lastTrigger = null;
+
+function closeModal(modal) {
+    modal.classList.remove('show');
+    if (lastTrigger) lastTrigger.focus();
+    lastTrigger = null;
+}
+
 document.querySelectorAll('.exp-entry').forEach(entry => {
     entry.addEventListener('click', () => {
         const experience = entry.getAttribute('data-experience');
         const modal = document.getElementById(`popout-${experience}`);
         modal.classList.add('show');
+        lastTrigger = entry;
+        // move keyboard focus into the modal so Enter/Space on × closes it
+        modal.querySelector('.close-btn').focus();
     });
 });
 
 document.querySelectorAll('.close-btn').forEach(btn => {
     btn.addEventListener('click', () => {
         const experience = btn.getAttribute('data-close');
-        const modal = document.getElementById(`popout-${experience}`);
-        modal.classList.remove('show');
+        closeModal(document.getElementById(`popout-${experience}`));
     });
 });
 
 // Close modal when clicking outside
 document.querySelectorAll('.popout-modal').forEach(modal => {
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('show');
-        }
+        if (e.target === modal) closeModal(modal);
     });
 });
 
 // Close any open modal with Escape
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        document.querySelectorAll('.popout-modal.show').forEach(modal => modal.classList.remove('show'));
+        document.querySelectorAll('.popout-modal.show').forEach(closeModal);
     }
 });
